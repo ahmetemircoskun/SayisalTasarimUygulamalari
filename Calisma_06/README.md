@@ -30,10 +30,10 @@ portları arasındaki ilişki verilmiştir.
 
 Çözüm Adımları:
 - 4x16 Decoder devresini kodlayınız.
-- Her çıkış portu için,
-∗ Doğruluk tablosu oluşturulacaktır.
-∗ Portun set edileceği durumlar miniterimler kullanılarak fonksiyon olarak yazılacaktır.
-∗ Elde edilen fonksiyondaki terimlere dair decoder çıkışlar OR operatörü ile birleştirilecektir.
+- Her çıkış portu için;
+  - Doğruluk tablosu oluşturulacaktır.
+  - Portun set edileceği durumlar miniterimler kullanılarak fonksiyon olarak yazılacaktır.
+  - Elde edilen fonksiyondaki terimlere dair decoder çıkışlar OR operatörü ile birleştirilecektir.
 
 ## Doğruluk Tablosu
 <img width="407" height="512" alt="DT" src="https://github.com/user-attachments/assets/f71717f8-7701-4ebe-8ec0-dbea09c89dcf" />
