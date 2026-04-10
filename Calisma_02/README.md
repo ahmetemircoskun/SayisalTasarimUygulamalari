@@ -12,7 +12,7 @@
 
 (d) Kodlanan modülleri bir test bench içerisinde çağırarak, olası tüm giriş kombinasyonları için doğru çalıştıklarını Modelsim’de simüle ederek teyit ediniz.
 
-Not: ~,&,| vb. operatör kullanmayınız, sadece ve veya not kapıları kullanınız.
+Not: ~, &, | vb. operatör kullanmayınız, sadece ve, veya, not kapıları kullanınız.
 
 ## Çözüm
 <img width="782" height="492" alt="Çözüm_2" src="https://github.com/user-attachments/assets/dff95613-6062-475a-a8d0-bf10cc9e6e1b" />
