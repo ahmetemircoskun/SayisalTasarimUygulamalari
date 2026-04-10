@@ -1,90 +1,80 @@
-/* 
-a)
-Y = AB + A'BC + BD'
+// Minterm
+module emir(em49,A,B,C,D);
 
-minterm:
-Y = A'BC'D' + A'BCD' + A'BCD + ABC'D' + ABC'D + ABCD' + ABCD
-Y = ?m(4,6,7,12,13,14,15)
+input A,C,B,D;
+output em49;
+wire m1,m2,m3,m4,m5;
+wire notA,notB,notC,notD;
 
-maxterm:
-Y = (A+B+C+D)(A+B+C+D')(A+B+C'+D)(A+B+C'+D')
-    (A+B'+C+D')(A'+B+C+D)(A'+B+C+D')(A'+B+C'+D)(A'+B+C'+D')
-Y = ?M(0,1,2,3,5,8,9,10,11)
-*/
+not(notA,A);
+not(notB,B);
+not(notC,C);
+not(notD,D);
 
-// b)
-module coskun(a,b,c,d,n49);
-input a, b, c, d;
-output n49;
-wire na, nb, nc, nd, o1, o2, o3, o4, o5, o6, o7, o8, o9;
+and(m1,notA,notB,notC,notD);
+and(m2,notA,notB,notC,D);
+and(m3,A,B,notC,notD);
+and(m4,A,B,notC,D);
+and(m5,A,notB,C,D);
 
-not(na,a);
-not(nb,b);
-not(nc,c);
-not(nd,d);
-
-or(o1,a,b,c,d);
-or(o2,a,b,c,nd);
-or(o3,a,b,nc,d);
-or(o4,a,b,nc,nd);
-or(o5,a,nb,c,nd);
-or(o6,na,b,c,d);
-or(o7,na,b,c,nd);
-or(o8,na,b,nc,d);
-or(o9,na,b,nc,nd);
-
-and(n49,o1,o2,o3,o4,o5,o6,o7,o8,o9);
+or(em49,m1,m2,m3,m4,m5);
 
 endmodule
 
-// c)
-module emir(a,b,c,d,e21);
-input a, b, c, d;
-output e21;
-wire na, nc, nd, a1, a2, a3, a4, a5, a6, a7;
+// Maxterm
+module coskun(n00,A,B,C,D);
 
-not(na,a);
-not(nc,c);
-not(nd,d);
+input A,C,B,D;
+output n00;
+wire M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11;
+wire notA,notB,notC,notD;
 
-and(a1,na,b,nc,nd);
-and(a2,na,b,c,nd);
-and(a3,na,b,c,d);
-and(a4,a,b,nc,nd);
-and(a5,a,b,nc,d);
-and(a6,a,b,c,nd);
-and(a7,a,b,c,d);
+not(notA,A);
+not(notB,B);
+not(notC,C);
+not(notD,D);
 
-or(e21,a1,a2,a3,a4,a5,a6,a7);
+or(M1,A,B,notC,D);
+or(M2,A,B,notC,notD);
+or(M3,A,notB,C,D);
+or(M4,A,notB,C,notD);
+or(M5,A,notB,notC,D);
+or(M6,A,notB,notC,notD);
+or(M7,notA,B,C,D);
+or(M8,notA,B,C,notD);
+or(M9,notA,B,notC,D);
+or(M10,notA,notB,notC,D);
+or(M11,notA,notB,notC,notD);
+
+and(n00,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11);
 
 endmodule
 
-// d)
-module tb();
-reg a, b, c, d;
-wire e21, n49;
+// Test
+module test;
+reg A,B,C,D;
+wire em49,n00;
 
-coskun coskun_ornek(a, b, c, d, n49);
-emir emir_ornek(a, b, c, d, e21);
+emir min(em49,A,B,C,D);
+coskun max(n00,A,B,C,D);
 
 initial begin
-    a=0; b=0; c=0; d=0; #10;
-    a=0; b=0; c=0; d=1; #10;
-    a=0; b=0; c=1; d=0; #10;
-    a=0; b=0; c=1; d=1; #10;
-    a=0; b=1; c=0; d=0; #10;
-    a=0; b=1; c=0; d=1; #10;
-    a=0; b=1; c=1; d=0; #10;
-    a=0; b=1; c=1; d=1; #10;
-    a=1; b=0; c=0; d=0; #10;
-    a=1; b=0; c=0; d=1; #10;
-    a=1; b=0; c=1; d=0; #10;
-    a=1; b=0; c=1; d=1; #10;
-    a=1; b=1; c=0; d=0; #10;
-    a=1; b=1; c=0; d=1; #10;
-    a=1; b=1; c=1; d=0; #10;
-    a=1; b=1; c=1; d=1; #10;
-    $stop;
+    A=0; B=0; C=0; D=0; #10;
+    A=0; B=0; C=0; D=1; #10;
+    A=0; B=0; C=1; D=0; #10;
+    A=0; B=0; C=1; D=1; #10;
+    A=0; B=1; C=0; D=0; #10;
+    A=0; B=1; C=0; D=1; #10;
+    A=0; B=1; C=1; D=0; #10;
+    A=0; B=1; C=1; D=1; #10;
+    A=1; B=0; C=0; D=0; #10;
+    A=1; B=0; C=0; D=1; #10;
+    A=1; B=0; C=1; D=0; #10;
+    A=1; B=0; C=1; D=1; #10;
+    A=1; B=1; C=0; D=0; #10;
+    A=1; B=1; C=0; D=1; #10;
+    A=1; B=1; C=1; D=0; #10;
+    A=1; B=1; C=1; D=1; #10;
+    $finish;
 end
-
 endmodule
