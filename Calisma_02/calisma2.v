@@ -1,9 +1,9 @@
 // Minterm
 module emir(em49,A,B,C,D);
-
-input A,C,B,D;
+    
+input A,B,C,D;
 output em49;
-wire m1,m2,m3,m4,m5;
+wire m0,m1,m11,m12,m13;
 wire notA,notB,notC,notD;
 
 not(notA,A);
@@ -11,22 +11,21 @@ not(notB,B);
 not(notC,C);
 not(notD,D);
 
-and(m1,notA,notB,notC,notD);
-and(m2,notA,notB,notC,D);
-and(m3,A,B,notC,notD);
-and(m4,A,B,notC,D);
-and(m5,A,notB,C,D);
+and(m0,notA,notB,notC,notD);  // 0000 (0)
+and(m1,notA,notB,notC,D);     // 0001 (1)
+and(m11,A,notB,C,D);          // 1011 (11)
+and(m12,A,B,notC,notD);       // 1100 (12)
+and(m13,A,B,notC,D);          // 1101 (13)
 
-or(em49,m1,m2,m3,m4,m5);
+or(em49,m0,m1,m11,m12,m13);
 
 endmodule
 
 // Maxterm
 module coskun(n00,A,B,C,D);
-
-input A,C,B,D;
+input A,B,C,D;
 output n00;
-wire M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11;
+wire M2,M3,M4,M5,M6,M7,M8,M9,M10,M14,M15;
 wire notA,notB,notC,notD;
 
 not(notA,A);
@@ -34,19 +33,19 @@ not(notB,B);
 not(notC,C);
 not(notD,D);
 
-or(M1,A,B,notC,D);
-or(M2,A,B,notC,notD);
-or(M3,A,notB,C,D);
-or(M4,A,notB,C,notD);
-or(M5,A,notB,notC,D);
-or(M6,A,notB,notC,notD);
-or(M7,notA,B,C,D);
-or(M8,notA,B,C,notD);
-or(M9,notA,B,notC,D);
-or(M10,notA,notB,notC,D);
-or(M11,notA,notB,notC,notD);
+or(M2,A,B,notC,D);            // 0010 (2)
+or(M3,A,B,notC,notD);         // 0011 (3)
+or(M4,A,notB,C,D);            // 0100 (4)
+or(M5,A,notB,C,notD);         // 0101 (5)
+or(M6,A,notB,notC,D);         // 0110 (6)
+or(M7,A,notB,notC,notD);      // 0111 (7)
+or(M8,notA,B,C,D);            // 1000 (8)
+or(M9,notA,B,C,notD);         // 1001 (9)
+or(M10,notA,B,notC,D);        // 1010 (10)
+or(M14,notA,notB,notC,D);     // 1110 (14)
+or(M15,notA,notB,notC,notD);  // 1111 (15)
 
-and(n00,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11);
+and(n00,M2,M3,M4,M5,M6,M7,M8,M9,M10,M14,M15);
 
 endmodule
 
